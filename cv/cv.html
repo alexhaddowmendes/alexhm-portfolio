@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <title>Alex Haddow-Mendes | CV</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* White page; olive for text accents, apricot for the dots (colours from the portfolio) */
+      :root {
+        --olive: #5a6528;
+        --warm: #f2a65a;
+        --ink: #2e3320;
+        --muted: #66685a;
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body {
+        margin: 0;
+        font-family: "Barlow", sans-serif;
+        font-size: 9.8pt;
+        line-height: 1.35;
+        color: var(--ink);
+        background: #fff;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        padding: 12mm 16mm 8mm;
+        display: grid;
+        grid-template-columns: 50mm 1fr;
+        column-gap: 11mm;
+        align-content: start;
+        overflow: hidden;
+      }
+
+      header {
+        grid-column: 1 / -1;
+        margin-bottom: 5mm;
+      }
+      h1 {
+        margin: 0;
+        font-size: 28pt;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.2px;
+      }
+      .role {
+        margin: 1.5mm 0 0;
+        font-size: 13pt;
+        font-weight: 500;
+        color: var(--olive);
+      }
+
+      h2 {
+        margin: 0 0 2.5mm;
+        font-size: 9.5pt;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--olive);
+      }
+      section {
+        margin-bottom: 5mm;
+      }
+
+      aside ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      aside li {
+        margin-bottom: 1.2mm;
+      }
+      .contact li {
+        margin-bottom: 1.8mm;
+        word-break: break-all;
+      }
+      .edu {
+        margin-bottom: 2.5mm;
+      }
+      .edu b {
+        display: block;
+        font-weight: 600;
+      }
+      .edu span {
+        display: block;
+        color: var(--muted);
+        font-size: 9pt;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      /* Entries carry an apricot dot */
+      .item {
+        position: relative;
+        padding-left: 5mm;
+        margin-bottom: 2.6mm;
+        break-inside: avoid;
+      }
+      .item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.5mm;
+        width: 2mm;
+        height: 2mm;
+        border-radius: 50%;
+        background: var(--warm);
+      }
+      .item h3 {
+        margin: 0;
+        font-size: 10pt;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        gap: 3mm;
+      }
+      .item h3 .when {
+        font-size: 9pt;
+        font-weight: 400;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .item .where {
+        color: var(--olive);
+        font-weight: 600;
+      }
+      .item small {
+        color: var(--muted);
+        font-size: 9pt;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Alex Haddow-Mendes</h1>
+        <p class="role">Senior Technical Games Designer</p>
+      </header>
+
+      <aside>
+        <section>
+          <h2>Contact</h2>
+          <ul class="contact">
+            <li>alexhm.co.uk</li>
+            <li>alexhaddowmendes@gmail.com</li>
+            <li>+44 7983 751364</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Skills</h2>
+          <ul>
+            <li>Gameplay &amp; systems design</li>
+            <li>Level design</li>
+            <li>UI/UX design</li>
+            <li>Rapid prototyping</li>
+            <li>Tech design pipelines</li>
+            <li>Mentoring &amp; leadership</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Code &amp; Tools</h2>
+          <ul>
+            <li>Blueprints, C++, C#, Lua</li>
+            <li>Unreal Engine, Unity, Northlight</li>
+            <li>3DS Max, Maya, ZBrush</li>
+            <li>Photoshop, Illustrator</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Education</h2>
+          <div class="edu">
+            <b>University of Central Lancashire</b
+            ><span>BA (Hons) Games Design, First</span
+            ><span>2013 &ndash; 2016</span>
+          </div>
+          <div class="edu">
+            <b>Exeter College</b><span>Information Technology</span
+            ><span>2011 &ndash; 2013</span>
+          </div>
+        </section>
+      </aside>
+
+      <main>
+        <section>
+          <h2>Profile</h2>
+          <p>
+            Senior technical designer with 15+ years in games, from hobbyist
+            modding to developing with TT Games, Ubisoft, Remedy, and Rockstar.
+            First-class Games Design degree, strong in Unreal and Unity, and
+            focused on fast prototyping and designing robust gameplay systems.
+          </p>
+        </section>
+
+        <section>
+          <h2>Experience</h2>
+          <div class="item">
+            <h3>
+              <span
+                >Senior Technical Designer
+                <span class="where">&middot; TT Games, Knutsford</span></span
+              ><span class="when">Oct 2024 &ndash; Present</span>
+            </h3>
+            <p>
+              Designing, prototyping and scripting gameplay activities for the
+              next LEGO open-world adventure.
+            </p>
+          </div>
+          <div class="item">
+            <h3>
+              <span
+                >Technical Designer
+                <span class="where">&middot; Splash Damage, Bromley</span></span
+              ><span class="when">Sep 2022 &ndash; Oct 2024</span>
+            </h3>
+            <p>
+              Open-world features and vehicle gameplay for Transformers
+              Reactivate, plus implementation workflows.
+            </p>
+          </div>
+          <div class="item">
+            <h3>
+              <span
+                >Senior Designer (Technical)
+                <span class="where">&middot; Red Kite Games, Leeds</span></span
+              ><span class="when">Sep 2021 &ndash; Sep 2022</span>
+            </h3>
+            <p>
+              Pre-production on FBC: Firebreak, adapting Control into a
+              multiplayer FPS.
+            </p>
+          </div>
+          <div class="item">
+            <h3>
+              <span
+                >Technical Level Designer
+                <span class="where"
+                  >&middot; Ubisoft, D&uuml;sseldorf</span
+                ></span
+              ><span class="when">Aug 2020 &ndash; Sep 2021</span>
+            </h3>
+            <p>
+              AAA VR on Assassin&rsquo;s Creed Nexus: technical support,
+              mechanic prototypes and mission script blocks.
+            </p>
+          </div>
+          <div class="item">
+            <h3>
+              <span
+                >Designer (Technical)
+                <span class="where">&middot; Team17, Wakefield</span></span
+              ><span class="when">Jul 2017 &ndash; Aug 2020</span>
+            </h3>
+            <p>
+              In-house and external projects across engines and genres;
+              prototyping and Team17&rsquo;s design point of contact.
+            </p>
+          </div>
+          <div class="item">
+            <h3>
+              <span
+                >Games Tester
+                <span class="where">&middot; Rockstar, Lincoln</span></span
+              ><span class="when">Apr &ndash; Jul 2017</span>
+            </h3>
+            <p>Quality testing in the RAGE engine on PS4, Xbox One and PC.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Selected Projects</h2>
+          <div class="item">
+            <h3>LEGO Batman: Legacy of the Dark Knight <small>2026</small></h3>
+            <p>
+              Owned multiple open-world activities from design to
+              implementation, and built their workflows.
+            </p>
+          </div>
+          <div class="item">
+            <h3>Transformers Reactivate <small>Unreal Engine 5</small></h3>
+            <p>
+              Wrote Blueprint standards and drove adoption; owned Open Worlds
+              documentation, designs and systems.
+            </p>
+          </div>
+          <div class="item">
+            <h3>FBC: Firebreak <small>Northlight, 2025</small></h3>
+            <p>
+              Prototyped core gameplay and missions for Control&rsquo;s
+              multiplayer spin-off, scripting in Lua.
+            </p>
+          </div>
+          <div class="item">
+            <h3>Assassin&rsquo;s Creed Nexus VR <small>Unity, 2023</small></h3>
+            <p>
+              Built the gameplay blocks for missions, carrying the franchise
+              into VR.
+            </p>
+          </div>
+          <div class="item">
+            <h3>Worms Rumble <small>Unreal Engine, 2020</small></h3>
+            <p>
+              Designed the original prototype and all UI, then returned for the
+              live-service release.
+            </p>
+          </div>
+          <div class="item">
+            <h3>
+              Advanced First Person Character <small>Unreal Marketplace</small>
+            </h3>
+            <p>
+              Popular first-person base tool that makes common systems usable
+              for non-technical designers.
+            </p>
+          </div>
+          <div class="item">
+            <h3>Luck Screen <small>Android, 2017</small></h3>
+            <p>Solo-developed puzzle game released on Google Play.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
