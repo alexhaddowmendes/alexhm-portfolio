@@ -9,8 +9,8 @@ const SITE_ROOT = new URL("./", document.currentScript.src).href;
 const CV_URL = "https://drive.google.com/file/d/1YiyVjwCXGZ6nIqOoYl5G3VqDIDrIgFuC/view?usp=sharing";
 
 const NAV = [
-  { id: "projects", label: "Projects", href: "index.html" },
-  { id: "about", label: "About Me", href: "index.html#about" },
+  { id: "projects", label: "Projects", href: "" },
+  { id: "about", label: "About Me", href: "#about" },
   { id: "cv", label: "CV / Resume", href: CV_URL },
 ];
 
@@ -19,7 +19,10 @@ const isExternal = (href) => /^https?:\/\//.test(href);
 // On the home page, links to a home-page section (like About Me) just scroll down instead of reloading.
 const HOME_PATH = new URL(SITE_ROOT).pathname;
 const onHomePage = () => location.pathname === HOME_PATH || location.pathname === `${HOME_PATH}index.html`;
-const navHref = (href) => (onHomePage() && href.startsWith("index.html#") ? href.slice("index.html".length) : SITE_ROOT + href);
+const navHref = (href) => (onHomePage() && href.startsWith("#") ? href : SITE_ROOT + href);
+
+// The home page lives at the bare address (alexhm.co.uk/), so drop a trailing index.html from the address bar.
+if (location.pathname === `${HOME_PATH}index.html`) history.replaceState(history.state, "", HOME_PATH + location.search + location.hash);
 
 // Icons are drawn inline (not as image files), so they take the colour of the text around them.
 const ICONS = {
@@ -47,7 +50,7 @@ class SiteHeader extends HTMLElement {
     ).join("");
     this.innerHTML = `
       <header class="site">
-        <a class="brand" href="${SITE_ROOT}index.html">
+        <a class="brand" href="${SITE_ROOT}">
           <p class="name">Alex Haddow-Mendes</p>
           <p class="role">Senior Technical Game Designer</p>
         </a>
@@ -110,7 +113,7 @@ const PROJECT_PATH = new URL("projects/", SITE_ROOT).pathname;
 const PROJECT_HASH = "#project=";
 if (location.pathname.startsWith(PROJECT_PATH)) {
   const slug = location.pathname.split("/").pop().replace(/\.html$/, "");
-  location.replace(`${SITE_ROOT}index.html${PROJECT_HASH}${slug}`);
+  location.replace(`${SITE_ROOT}${PROJECT_HASH}${slug}`);
 }
 
 /* Videos: <div class="video" data-youtube="ID"> (or data-vimeo="ID") becomes the player. Add data-autoplay
@@ -179,7 +182,7 @@ function highlightSectionInNav() {
 }
 
 /* Home page: clicking a project tile opens that project in an overlay instead of a new page.
-   The address bar switches to index.html#project=<name>, so links can be shared and the browser's Back button
+   The address bar switches to /#project=<name>, so links can be shared and the browser's Back button
    closes the overlay; opening such a link (or the old projects/<name>.html one) shows the overlay over the home page.
    The window has a close button in its top right corner, and previous / next arrows either side of it
    (the arrow keys work too). Both arrows wrap round at the ends of the gallery. */
