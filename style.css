@@ -1,0 +1,285 @@
+/* Alex Haddow-Mendes: site styles
+   Fonts: Barlow stands in for the licensed DIN Next. Colours are the warm palette below. */
+
+:root {
+  /* Warm, light palette built around Alex's olive #AFBA78, with apricot for warmth.
+     Contrast on the page background: --ink 12.3:1, --accent-strong 5.9:1, --muted 5.4:1.
+     --accent and --warm are fills and lines only; text on them uses --on-accent (6.3:1 on olive, 6.4:1 on apricot). */
+  color-scheme: light;
+  --accent: #afba78;        /* olive: active nav button, tile name bars, lines and underlines */
+  --accent-strong: #5a6528; /* deep olive: name, headings, links, arrows */
+  --warm: #f2a65a;          /* apricot: main button, tile hover outline */
+  --on-accent: #2e3320;     /* text on an olive or apricot fill */
+  --ink: #2e3320;           /* body text */
+  --muted: #66685a;         /* secondary text: role, captions, footer */
+  --bg: #fbf8f0;            /* cream page background */
+  --surface: #f3eedf;       /* top bar */
+  --panel: #efe9d8;         /* quotes, image placeholders */
+}
+
+* { box-sizing: border-box; }
+
+/* Always reserve room for the scrollbar, so short and long pages line up and the header doesn't shift */
+html { overflow-y: scroll; scrollbar-gutter: stable; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Barlow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; }
+
+/* Layout widths follow common conventions: a 1280px page (Tailwind's max-w-7xl; Bootstrap uses 1140-1320px)
+   with 24px side gutters, and reading text capped at 700px (about 70 characters per line at 18px). */
+:root { --page: 1280px; --measure: 700px; --wide: 1040px; }
+.page { max-width: var(--page); margin: 0 auto; padding: 0 24px; min-height: 100vh; display: flex; flex-direction: column; }
+.page > main { flex: 1; } /* keeps the footer at the bottom of the screen on short pages */
+
+/* Shared header and footer are drawn by site.js */
+site-header, site-footer { display: block; }
+
+/* The header stays at the top of the screen, at the same size. The shadow trick paints its background full width.
+   Once the page is scrolled, site.js adds .scrolled and a thin line appears underneath. */
+site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--surface); box-shadow: 0 0 0 100vmax var(--surface); clip-path: inset(0 -100vmax);
+}
+site-header::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: transparent; transition: background .2s;
+}
+site-header.scrolled::after { background: var(--accent); }
+
+/* ---------- Header ---------- */
+/* The nav buttons run the full height of the bar, so there's no empty band above or below them */
+header.site {
+  display: flex; align-items: stretch; justify-content: space-between;
+  min-height: 96px; flex-wrap: wrap;
+}
+.brand { display: block; width: 301px; align-self: center; }
+.brand .name { margin: 0; font-size: 30px; line-height: 1.15; font-weight: 500; color: var(--accent-strong); }
+.brand .role { margin: 2px 0 0; font-size: 20px; line-height: 1.2; color: var(--muted); }
+
+nav.main { display: flex; flex: 1; max-width: 673px; }
+nav.main a {
+  flex: 1; display: flex; align-items: center; justify-content: center; padding: 0;
+  font-size: 22px; font-weight: 500; color: var(--accent-strong);
+}
+nav.main a + a { border-left: 1px solid rgba(90, 101, 40, .18); }
+nav.main a:hover, nav.main a:focus-visible { text-decoration: underline; }
+nav.main a.active { background: var(--accent); color: var(--on-accent); font-weight: 600; }
+nav.main a.active:hover { text-decoration: none; }
+
+/* ---------- Page titles ---------- */
+.titlebar { position: relative; text-align: center; margin: 26px 0 26px; min-height: 40px; }
+.titlebar h1 { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 500; }
+.facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 36px; margin: 12px 0 0; padding: 0; }
+.facts div { text-align: center; }
+.facts dt { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-size: 17px; font-weight: 600; color: var(--accent-strong); }
+.back, .next {
+  position: absolute; left: 0; top: 6px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 18px; font-weight: 500; color: var(--accent-strong);
+}
+.next { left: auto; right: 0; }
+.next[hidden] { display: none; }
+.back::before, .next::after {
+  content: ""; width: 10px; height: 10px; border-left: 4px solid var(--accent-strong); border-bottom: 4px solid var(--accent-strong);
+  transform: rotate(45deg); margin: 0 4px 0 8px;
+}
+.next::after { transform: rotate(-135deg); margin: 0 8px 0 4px; }
+.back:hover, .next:hover { text-decoration: underline; }
+
+/* ---------- Project tiles (home page): a grid that fits as many columns as the width allows ---------- */
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 0 0 10px; }
+.tile { display: block; background: var(--accent); border-radius: 4px; overflow: hidden; }
+.tile img { display: block; width: 100%; height: auto; aspect-ratio: 272 / 328; object-fit: cover; }
+.tile span {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 64px; padding: 8px;
+  font-family: "Raleway", sans-serif; font-size: 16px; font-weight: 500; color: var(--on-accent); text-align: center;
+}
+.tile small { margin-top: 2px; font-size: 13px; color: var(--on-accent); }
+.tile:hover span, .tile:focus-visible span { text-decoration: underline; }
+.tile { transition: box-shadow .15s; }
+.tile:hover, .tile:focus-visible { box-shadow: 0 0 0 3px var(--warm); }
+
+/* ---------- Home ---------- */
+/* Section headings stick just under the top bar while you scroll through their section.
+   site.js keeps --header-h equal to the top bar's height (it's taller on phones). */
+.project-group { margin-bottom: 64px; scroll-margin-top: var(--header-h, 96px); }
+.project-group h2 {
+  position: sticky; top: var(--header-h, 96px); z-index: 5;
+  /* Paint the heading's background right across the screen, so nothing scrolling underneath peeks out at the sides */
+  background: var(--bg); box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax);
+  margin: 0 0 16px; padding: 12px 0 8px; border-bottom: 3px solid var(--accent);
+  font-size: 24px; font-weight: 600; color: var(--accent-strong);
+}
+.intro { display: grid; grid-template-columns: auto minmax(360px, 1fr); gap: 24px 0; margin: 48px 0 56px; }
+.intro > div { min-width: 0; }
+/* "Currently" tracker card, to the right of the headline, vertically centred against the text; the dot pulses gently */
+.status-cards { align-self: center; justify-self: center; display: grid; gap: 16px; width: 320px; max-width: 100%; }
+.intro .status {
+  padding: 20px 24px; border-radius: 4px; background: var(--panel); border-left: 4px solid var(--accent);
+  color: var(--accent-strong);
+}
+.intro .status p { margin: 0; font-size: 16px; line-height: 1.35; }
+.intro .status-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.intro .status-role { font-size: 22px; font-weight: 600; }
+.intro .status-place { margin-top: 2px; color: var(--ink); }
+.intro .status-note { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--accent); color: var(--muted); }
+.status-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--warm); animation: status-pulse 2s ease-out infinite; }
+@keyframes status-pulse { 0% { box-shadow: 0 0 0 0 var(--warm); } 70%, 100% { box-shadow: 0 0 0 8px transparent; } }
+@media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
+.intro h1 { margin: 0 0 14px; font-size: clamp(34px, 5vw, 52px); line-height: 1.05; font-weight: 600; color: var(--accent-strong); }
+.intro > div p { max-width: var(--measure); margin: 0 0 24px; font-size: 20px; line-height: 1.45; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.button {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border: 2px solid var(--warm); border-radius: 4px;
+  background: var(--warm); color: var(--on-accent); font-weight: 600; font-size: 18px;
+}
+.button .icon { width: 20px; height: 20px; flex: none; }
+.button.secondary { background: transparent; border-color: var(--accent-strong); color: var(--accent-strong); }
+.button:hover, .button:focus-visible { text-decoration: underline; }
+
+/* ---------- About (section at the end of the home page) ---------- */
+/* About Me plus the footer exactly fill the screen below the top bar, so when you reach About the page
+   ends there: no further scrolling, and none of the gallery showing above it.
+   site.js keeps --header-h and --footer-h up to date; --footer-gap is the space above the footer. */
+:root { --footer-gap: 120px; }
+.about {
+  margin: 24px 0 0; scroll-margin-top: var(--header-h, 96px);
+  min-height: calc(100vh - var(--header-h, 96px) - var(--footer-gap) - var(--footer-h, 0px));
+  min-height: calc(100svh - var(--header-h, 96px) - var(--footer-gap) - var(--footer-h, 0px));
+}
+.about h2 {
+  margin: 0 0 32px; padding: 12px 0 8px; border-bottom: 3px solid var(--accent);
+  font-size: 24px; font-weight: 600; color: var(--accent-strong);
+}
+/* Photo beside the text, a square as tall as the text (site.js sets --about-h); stacked above it on phones */
+.about-body { display: grid; grid-template-columns: var(--about-h, 280px) minmax(0, 1fr); gap: 32px 56px; align-items: start; }
+.about-body img { display: block; width: var(--about-h, 280px); height: var(--about-h, 280px); object-fit: cover; border-radius: 4px; border: 4px solid var(--accent); }
+.about-body .actions { margin-top: 28px; }
+.about-body p { margin: 0 0 1.2em; line-height: 1.55; }
+.memory { margin-top: 48px; padding: 24px 28px 8px; border-left: 4px solid var(--accent); border-radius: 4px; background: var(--panel); }
+.memory h3 { margin: 0 0 12px; font-size: 20px; font-weight: 600; color: var(--accent-strong); }
+.memory p { max-width: var(--measure); margin: 0 0 1.2em; line-height: 1.55; }
+.skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; padding: 0; list-style: none; }
+.skills li { padding: 4px 12px; border-radius: 999px; background: var(--panel); color: var(--accent-strong); font-size: 15px; font-weight: 500; }
+
+/* ---------- Project pages (projects/*.html) ---------- */
+/* Two columns: trailer or screenshot (and any further media) on the left, the write-up on the right */
+.project { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: start; max-width: 1120px; margin: 0 auto; padding-bottom: 20px; }
+.project-media { display: grid; gap: 16px; }
+.project-media h3 { margin: 8px 0 -4px; font-size: 16px; font-weight: 600; color: var(--accent-strong); }
+.project-copy > :first-child { margin-top: 0; }
+.project-copy p, .project-copy ul, .project-copy blockquote { margin: 0 0 1em; }
+.project-copy .lead { font-size: 20px; line-height: 1.45; }
+.project-copy ul { padding-left: 22px; }
+.project-copy li { margin-bottom: 6px; }
+.project-copy li::marker { color: var(--accent-strong); }
+.project-copy h2 { margin: 1.6em 0 .6em; font-size: 18px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-strong); }
+.project-copy a { color: var(--accent-strong); text-decoration: underline; }
+.project-copy a:hover { text-decoration: none; }
+.project-copy .link a { font-weight: 600; }
+.project-copy blockquote {
+  padding: 14px 18px; background: var(--panel); border-left: 4px solid var(--accent);
+  font-style: italic; color: var(--ink); font-size: 16px;
+}
+
+.video { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.figure, .clip { margin: 0; }
+.figure img { display: block; width: 100%; }
+.figure figcaption { padding: 6px 0 0; font-size: 15px; color: var(--muted); }
+.clip figcaption { margin: 0 0 6px; font-size: 16px; font-weight: 600; color: var(--accent-strong); }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.gallery img { height: 100%; object-fit: cover; aspect-ratio: 16 / 10; background: var(--panel); }
+.gallery .figure:has(figcaption) img { height: auto; }
+.gallery.contain img { object-fit: contain; }
+
+/* ---------- Footer ---------- */
+/* A full-width bar matching the top bar, laid out in one row: name, links, then copyright and back to top */
+site-footer {
+  margin-top: var(--footer-gap);
+  background: var(--surface); box-shadow: 0 0 0 100vmax var(--surface); clip-path: inset(0 -100vmax -100vmax);
+}
+footer.site {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px;
+  min-height: 96px; padding: 16px 0; border-top: 3px solid var(--accent);
+}
+.footer-brand .name { margin: 0; font-size: 22px; font-weight: 500; color: var(--accent-strong); }
+.footer-brand .role { margin: 2px 0 0; font-size: 16px; color: var(--muted); }
+.footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; }
+.footer-links a { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-strong); font-weight: 500; }
+.footer-links .icon { width: 20px; height: 20px; flex: none; }
+.footer-links a:hover, .to-top:hover { text-decoration: underline; }
+.footer-base { display: flex; align-items: center; gap: 20px; font-size: 14px; color: var(--muted); }
+.footer-base p { margin: 0; }
+.to-top { color: var(--accent-strong); font-weight: 500; }
+
+/* ---------- Project overlay (home page, see site.js) ---------- */
+/* A backdrop with the project window in the middle: close button in the window's top right corner,
+   and previous / next arrows either side of it, vertically centred on the screen. */
+html.has-overlay { overflow: hidden; } /* stop the gallery scrolling behind the overlay */
+.overlay {
+  position: fixed; inset: 0; z-index: 50; padding: 24px;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  background: rgba(46, 51, 32, .6); animation: overlay-in .2s ease-out;
+}
+.overlay-window { position: relative; flex: 0 1 1120px; min-width: 0; max-height: 100%; display: flex; animation: panel-in .25s ease-out; }
+.overlay-panel {
+  flex: 1; min-width: 0; overflow-y: auto; padding: 24px 40px 48px; border-radius: 6px;
+  background: var(--bg); box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+}
+.overlay-close {
+  position: absolute; top: 12px; right: 12px; z-index: 2; width: 44px; height: 44px;
+  border: 0; border-radius: 50%; background: var(--warm); color: var(--on-accent);
+  font: 600 28px/1 "Barlow", sans-serif; cursor: pointer; box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+}
+.overlay-arrow {
+  flex: none; width: 52px; height: 52px; border: 0; border-radius: 50%; background: var(--bg); color: var(--accent-strong);
+  font: 500 34px/1 "Barlow", sans-serif; cursor: pointer; box-shadow: 0 3px 12px rgba(0, 0, 0, .25);
+}
+.overlay-close:hover, .overlay-close:focus-visible, .overlay-arrow:hover, .overlay-arrow:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.overlay-arrow:hover { background: var(--accent); color: var(--on-accent); }
+@keyframes overlay-in { from { opacity: 0; } }
+@keyframes panel-in { from { opacity: 0; transform: translateY(16px); } }
+@media (prefers-reduced-motion: reduce) { .overlay, .overlay-window { animation: none; } }
+
+/* Mid-size screens: narrower photo column */
+@media (max-width: 1140px) {
+  .about-body { gap: 32px 40px; }
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 900px) {
+  header.site { justify-content: center; padding: 16px 0 0; text-align: center; }
+  .brand { margin-bottom: 12px; }
+  .brand { width: 100%; }
+  nav.main { max-width: none; width: 100%; }
+  nav.main a { padding: 16px 0; font-size: 18px; white-space: nowrap; }
+  .page { padding: 0 16px; }
+  .intro { grid-template-columns: 1fr; margin-top: 32px; }
+  .status-cards { order: -1; align-self: start; justify-self: start; }
+  .about-body { grid-template-columns: 1fr; }
+  .about-body img { width: 140px; height: 140px; }
+  .titlebar { padding-top: 34px; }
+  footer.site { flex-direction: column; text-align: center; padding: 24px 0; }
+  .footer-links { justify-content: center; }
+  .back, .next { top: 0; }
+  .project { grid-template-columns: 1fr; gap: 24px; }
+  .overlay { padding: 8px; }
+  .overlay-panel { padding: 56px 16px 80px; }
+  /* No room beside the window on a phone, so the arrows sit at the bottom corners instead */
+  .overlay-arrow { position: fixed; bottom: 16px; z-index: 3; width: 48px; height: 48px; }
+  .overlay-prev { left: 16px; }
+  .overlay-next { right: 16px; }
+}

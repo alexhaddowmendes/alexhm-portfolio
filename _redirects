@@ -1,0 +1,61 @@
+# Redirects (Cloudflare Pages / Netlify format)
+
+# Old URLs from the previous version of the site
+/po                              / 301
+/info                            /#about 301
+/professional                    /#professional 301
+/personal                        /#personal 301
+/technical-design                /#personal 301
+/level-design                    /#personal 301
+/afpc                            /projects/afpc.html 301
+/transformers-reactivate         /projects/transformers-reactivate.html 301
+/copy-of-worms-rumble            /projects/fbc-firebreak.html 301
+/assassin-s-creed-vr             /projects/assassins-creed-nexus-vr.html 301
+/worms-rumble                    /projects/worms-rumble.html 301
+/golf-with-your-friends          /projects/golf-with-your-friends.html 301
+/hell-let-loose                  /projects/hell-let-loose.html 301
+/planet-alpha                    /projects/planet-alpha.html 301
+/genesis-alpha-one               /projects/genesis-alpha-one.html 301
+/aven-colony                     /projects/aven-colony.html 301
+/luckscreen                      /projects/luckscreen.html 301
+/blank                           /projects/come-in-over.html 301
+/fight-the-light                 /projects/fight-the-light.html 301
+/beneath-the-sand                /projects/beneath-the-sand.html 301
+/colour-by-day                   /projects/colour-by-day.html 301
+/onsite                          /projects/onsite.html 301
+/oldworld                        /projects/oldworld.html 301
+/oilious-rigious                 /projects/oilious-rigious.html 301
+/dark-bad                        /projects/dark-bad.html 301
+/ether-one                       /projects/ether-one.html 301
+/_files/ugd/cdc164_7487faccd0134da1a769d32060b69ae5.pdf https://drive.google.com/file/d/1YiyVjwCXGZ6nIqOoYl5G3VqDIDrIgFuC/view?usp=sharing 302
+
+# Pages from before the site was restructured into projects/
+/portfolio.html                  / 301
+/professional.html               /#professional 301
+/personal.html                   /#personal 301
+/technical-design.html           /#personal 301
+/game-design.html                /#personal 301
+/afpc.html                       /projects/afpc.html 301
+/assassins-creed-nexus-vr.html   /projects/assassins-creed-nexus-vr.html 301
+/aven-colony.html                /projects/aven-colony.html 301
+/beneath-the-sand.html           /projects/beneath-the-sand.html 301
+/colour-by-day.html              /projects/colour-by-day.html 301
+/come-in-over.html               /projects/come-in-over.html 301
+/dark-bad.html                   /projects/dark-bad.html 301
+/ether-one.html                  /projects/ether-one.html 301
+/fbc-firebreak.html              /projects/fbc-firebreak.html 301
+/fight-the-light.html            /projects/fight-the-light.html 301
+/genesis-alpha-one.html          /projects/genesis-alpha-one.html 301
+/golf-with-your-friends.html     /projects/golf-with-your-friends.html 301
+/hell-let-loose.html             /projects/hell-let-loose.html 301
+/luckscreen.html                 /projects/luckscreen.html 301
+/oilious-rigious.html            /projects/oilious-rigious.html 301
+/oldworld.html                   /projects/oldworld.html 301
+/onsite.html                     /projects/onsite.html 301
+/planet-alpha.html               /projects/planet-alpha.html 301
+/transformers-reactivate.html    /projects/transformers-reactivate.html 301
+/worms-rumble.html               /projects/worms-rumble.html 301
+/Alex_Haddow-Mendes_CV.pdf       https://drive.google.com/file/d/1YiyVjwCXGZ6nIqOoYl5G3VqDIDrIgFuC/view?usp=sharing 302
+/projects.html                   / 301
+/files/cv.pdf                    https://drive.google.com/file/d/1YiyVjwCXGZ6nIqOoYl5G3VqDIDrIgFuC/view?usp=sharing 302
+/about.html                      /#about 301

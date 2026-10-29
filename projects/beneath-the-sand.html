@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beneath The Sand | Alex Haddow-Mendes</title>
+<meta name="description" content="A side scrolling adventure game. The player travels through a tomb, reliving the story of a Pharaoh in an innovative way, avoiding dangers and completing puzzles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Raleway:wght@400;500&family=Signika:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js"></script>
+</head>
+<body>
+<div class="page">
+  <site-header active="projects"></site-header>
+
+  <main>
+    <article>
+      <header class="titlebar">
+        <a class="back" href="../">All projects</a>
+        <a class="next" href="../" hidden>Next project</a>
+        <h1>Beneath The Sand</h1>
+        <dl class="facts"><div><dt>Year</dt><dd>2015</dd></div><div><dt>Platform</dt><dd>PC</dd></div><div><dt>Engine</dt><dd>Unreal Engine</dd></div></dl>
+      </header>
+      <div class="project">
+        <div class="project-media">
+        <figure class="figure"><img src="../img/beneath-6.webp" alt="Beneath The Sand screenshot" loading="lazy"></figure>
+        <div class="gallery"><figure class="figure"><img src="../img/beneath-1.webp" alt="Beneath The Sand screenshot" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-2.webp" alt="Beneath The Sand screenshot" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-3.webp" alt="Beneath The Sand screenshot" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-the-sand-tile.webp" alt="Beneath The Sand screenshot" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-5.webp" alt="Beneath The Sand screenshot" loading="lazy"></figure></div>
+        <h3>Character abilities</h3><div class="gallery contain"><figure class="figure"><img src="../img/beneath-anim-1.webp" alt="Character ability demonstration" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-anim-2.webp" alt="Character ability demonstration" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-anim-3.webp" alt="Character ability demonstration" loading="lazy"></figure></div>
+        <h3>Lane switching</h3><div class="gallery contain"><figure class="figure"><img src="../img/beneath-anim-4.webp" alt="Lane switching demonstration" loading="lazy"></figure><figure class="figure"><img src="../img/beneath-anim-5.webp" alt="Lane switching demonstration" loading="lazy"></figure></div>
+        </div>
+        <div class="project-copy">
+          <p class="lead">A side scrolling adventure game. The player travels through a tomb, reliving the story of a Pharaoh in an innovative way, avoiding dangers and completing puzzles.</p>
+          <h2>My role</h2>
+          <p>I made Beneath The Sand with three fellow students during an internship at White Paper Games, where we were tasked with creating a small game in under three months. My role was scripting, but I worked in multiple areas, from art to level design.</p>
+          <h2>What I did</h2>
+          <ul><li>Scripted the game</li><li>Designed a dynamic camera system with options for the designer</li><li>Designed a lane switching system for a side scroller that keeps its two-axis feel</li><li>Worked across art and level design</li></ul>
+          <h2>Dynamic camera system</h2>
+<p>The camera was not directly controlled by the player: it follows the player but could not be rotated or panned.</p>
+<p>I designed a camera system that provides options for the designer. Three options were presented when switching cameras: Side Follow, Full Follow or Static Camera. Offset and the speed of the camera switch were also available as variables.</p>
+<h2>Lane switching</h2>
+<p>As the game is a side scroller you can't change depths, you're constrained to two axes. We wanted to keep that principle as well as an interactable change in depth.</p>
+<p>When a lane switch has been activated, the player can only decide whether to move forward or backward, leaving an AI to calculate the path to the end lane point.</p>
+<p>The player is able to switch the movement from forward to backward, but cannot stop altogether, preventing any errors from being in the wrong depth.</p>
+          
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <site-footer></site-footer>
+</div>
+</body>
+</html>
