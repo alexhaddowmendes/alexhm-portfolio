@@ -167,7 +167,8 @@ nav.main a.active:hover { text-decoration: none; }
 .about-body img { display: block; width: var(--about-h, 280px); height: var(--about-h, 280px); object-fit: cover; border-radius: 4px; border: 4px solid var(--accent); }
 .about-body .actions { margin-top: 28px; }
 .about-body p { margin: 0 0 1.2em; line-height: 1.55; }
-.memory { margin-top: 48px; padding: 24px 28px 8px; border-left: 4px solid var(--accent); border-radius: 4px; background: var(--panel); }
+.memories { margin-top: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.memory { padding: 24px 28px 8px; border-left: 4px solid var(--accent); border-radius: 4px; background: var(--panel); }
 .memory h3 { margin: 0 0 12px; font-size: 20px; font-weight: 600; color: var(--accent-strong); }
 .memory p { max-width: var(--measure); margin: 0 0 1.2em; line-height: 1.55; }
 .skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; padding: 0; list-style: none; }
@@ -270,6 +271,7 @@ html.has-overlay { overflow: hidden; } /* stop the gallery scrolling behind the 
   .intro { grid-template-columns: 1fr; margin-top: 32px; }
   .status-cards { order: -1; align-self: start; justify-self: start; }
   .about-body { grid-template-columns: 1fr; }
+  .memories { grid-template-columns: 1fr; }
   .about-body img { width: 140px; height: 140px; }
   .titlebar { padding-top: 34px; }
   footer.site { flex-direction: column; text-align: center; padding: 24px 0; }
