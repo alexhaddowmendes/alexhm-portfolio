@@ -240,6 +240,7 @@ html.has-overlay { overflow: hidden; } /* stop the gallery scrolling behind the 
   flex: 1; min-width: 0; overflow-y: auto; padding: 24px 40px 48px; border: 4px solid var(--accent); border-radius: 6px;
   background: var(--bg); box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
 }
+.overlay-panel .titlebar { margin-top: 0; padding-top: 0; } /* the panel's own padding sets the top gap (the Back link this padding made room for is removed here) */
 .overlay-close {
   position: absolute; top: 12px; right: 12px; z-index: 2; width: 44px; height: 44px;
   border: 0; border-radius: 50%; background: var(--warm); color: var(--on-accent);
